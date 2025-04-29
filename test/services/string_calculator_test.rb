@@ -29,4 +29,10 @@ class CalculatorTest < ActiveSupport::TestCase
     assert_equal 10, Calculator.add("1,2\n3,4")
     assert_equal 15, Calculator.add("1\n2\n3,4,5")
   end
+
+  test "supports custom delimiters" do
+    assert_equal 3, Calculator.add("//;\n1;2")
+    assert_equal 6, Calculator.add("//|\n1|2|3")
+    assert_equal 10, Calculator.add("//@\n2@3@5")
+  end
 end
