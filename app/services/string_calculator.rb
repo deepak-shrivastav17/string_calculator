@@ -4,6 +4,7 @@ class Calculator
   def self.add(numbers)
     return 0 if numbers.empty?
     
-    numbers.split(',').map(&:to_i).sum
+    # Replace newlines with commas and then split
+    numbers.gsub("\n", ",").split(",").map(&:to_i).sum
   end
 end
