@@ -17,4 +17,10 @@ class CalculatorTest < ActiveSupport::TestCase
     assert_equal 10, Calculator.add("3,7")
     assert_equal 42, Calculator.add("40,2")
   end
+
+  test "handles unknown amount of numbers" do
+    assert_equal 6, Calculator.add("1,2,3")
+    assert_equal 15, Calculator.add("1,2,3,4,5")
+    assert_equal 45, Calculator.add("1,2,3,4,5,6,7,8,9")
+  end
 end
