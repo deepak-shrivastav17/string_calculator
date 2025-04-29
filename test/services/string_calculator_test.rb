@@ -8,5 +8,13 @@ class CalculatorTest < ActiveSupport::TestCase
 
   test "single number returns that number" do
     assert_equal 1, Calculator.add("1")
+    assert_equal 2, Calculator.add("2")
+    assert_equal 42, Calculator.add("42")
+  end
+
+  test "two numbers returns their sum" do
+    assert_equal 3, Calculator.add("1,2")
+    assert_equal 10, Calculator.add("3,7")
+    assert_equal 42, Calculator.add("40,2")
   end
 end
