@@ -35,4 +35,16 @@ class CalculatorTest < ActiveSupport::TestCase
     assert_equal 6, Calculator.add("//|\n1|2|3")
     assert_equal 10, Calculator.add("//@\n2@3@5")
   end
+
+  test "throws exception for negative numbers" do
+    exception = assert_raises(ArgumentError) do
+      Calculator.add("-1,2")
+    end
+    assert_equal "negative numbers not allowed: -1", exception.message
+
+    exception = assert_raises(ArgumentError) do
+      Calculator.add("1,-2,3,-4")
+    end
+    assert_equal "negative numbers not allowed: -2, -4", exception.message
+  end
 end

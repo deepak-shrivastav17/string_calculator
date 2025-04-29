@@ -13,7 +13,15 @@ class Calculator
       numbers_part = numbers
     end
 
-    # Replace newlines and custom delimiter with comma
-    numbers_part.gsub("\n", ",").gsub(delimiter, ",").split(",").map(&:to_i).sum
+    # Convert string to array of integers
+    nums = numbers_part.gsub("\n", ",").gsub(delimiter, ",").split(",").map(&:to_i)
+    
+    # Check for negative numbers
+    negatives = nums.select { |n| n < 0 }
+    if negatives.any?
+      raise ArgumentError, "negative numbers not allowed: #{negatives.join(', ')}"
+    end
+
+    nums.sum
   end
 end
